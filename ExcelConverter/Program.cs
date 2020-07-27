@@ -6,7 +6,9 @@ namespace ExcelConverter
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string csvPath = @"trytry.csv";
+            CsvReaderClass reader = new CsvReaderClass(csvPath);
+            reader.readCsv();
         }
     }
 }

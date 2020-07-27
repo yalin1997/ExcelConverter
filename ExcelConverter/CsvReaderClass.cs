@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using CsvHelper;
+using Microsoft.VisualBasic.FileIO;
 
 namespace ExcelConverter
 {
@@ -18,15 +19,17 @@ namespace ExcelConverter
         }
         public void readCsv()
         {
-            using (var reader = new StreamReader(csvPath))
+            using (TextFieldParser parser = new TextFieldParser(csvPath))
             {
-                using (var csv = new CsvReader(reader , CultureInfo.InvariantCulture))
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
                 {
-                    for (int i = 0; i < 7; i++)
-                    {
-                        csv.Read();
-                        Console.WriteLine(csv.Context);
-                    }
+                    //Processing row
+                    string fields = parser.ReadLine();
+                        //TODO: Process field
+                    Console.WriteLine(fields);
+
                 }
             }
         }
