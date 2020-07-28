@@ -29,7 +29,7 @@ namespace ExcelConverter
                 {
                     //Processing row
                     string line = parser.ReadLine();
-                    Console.WriteLine(line);
+                    //Console.WriteLine(line);
                     rowCounter++;
                     string[] lineArray = line.Split(',');
                     rowDic.Add(rowCounter, lineArray);
