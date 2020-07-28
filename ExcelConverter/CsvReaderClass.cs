@@ -17,8 +17,10 @@ namespace ExcelConverter
         {
             this.csvPath = path;
         }
-        public void readCsv()
+        public Dictionary<int, string[]> readCsv()
         {
+            Dictionary<int, string[]> rowDic = new Dictionary<int, string[]>();
+            int rowCounter = 0;
             using (TextFieldParser parser = new TextFieldParser(csvPath))
             {
                 parser.TextFieldType = FieldType.Delimited;
@@ -26,12 +28,14 @@ namespace ExcelConverter
                 while (!parser.EndOfData)
                 {
                     //Processing row
-                    string fields = parser.ReadLine();
-                        //TODO: Process field
-                    Console.WriteLine(fields);
-
+                    string line = parser.ReadLine();
+                    Console.WriteLine(line);
+                    rowCounter++;
+                    string[] lineArray = line.Split(',');
+                    rowDic.Add(rowCounter, lineArray);
                 }
             }
+            return rowDic;
         }
     }
 }

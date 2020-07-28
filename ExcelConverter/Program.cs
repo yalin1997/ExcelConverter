@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ExcelConverter
 {
@@ -8,7 +9,8 @@ namespace ExcelConverter
         {
             string csvPath = @"trytry.csv";
             CsvReaderClass reader = new CsvReaderClass(csvPath);
-            reader.readCsv();
+            Dictionary<int, string[]> csvContent = reader.readCsv();
+            
         }
     }
 }
